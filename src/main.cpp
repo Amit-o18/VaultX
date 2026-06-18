@@ -5,9 +5,11 @@ int main(){
     AuthManager A;
     // cout<<A.masterPassExist()<<endl;
      
-    if (A.masterPassExist()){
-        cout<<"Master Pass Exist";
+    if (!A.masterPassExist()){
+        A.createMasterPass();
     }else{
-        cout<<"Master Pass does not Exist";
+        // A.verifyPass();
+        cout<<"verify later.";
     }
+    
 }
