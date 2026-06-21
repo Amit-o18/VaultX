@@ -9,7 +9,10 @@ int main(){
         A.createMasterPass();
     }else{
         // A.verifyPass();
-        cout<<"verify later.";
+        if(A.verifyPass()){
+            cout << "Access granted.\n";
+        }else{
+            cout << "Access denied.\n";
+        }
     }
-    
 }
