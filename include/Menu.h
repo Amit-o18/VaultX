@@ -4,3 +4,4 @@ class Menu{
     int getChoice();
     void run();
 };
+

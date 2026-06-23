@@ -2,7 +2,8 @@
 #include "../include/AuthManager.h"
 #include <filesystem>
 #include <fstream>
-#include <windows.h>
+#include <thread>
+#include <chrono>
 using namespace std;
 bool AuthManager::masterPassExist()
 {
@@ -59,9 +60,11 @@ void AuthManager::createMasterPass()
     }
 }
 
-bool AuthManager::verifyPass()
+bool AuthManager::verifyPass(string username)
 {
-    ifstream file("data/master.hash");
+    string masterPath="data/"+username+"/master.hash";
+    string vaultPath="data/"+username+"/vault.dat+";
+    ifstream file("masterPath");    
     string existPass = "";
     if (file.is_open())
     {
@@ -96,7 +99,7 @@ bool AuthManager::verifyPass()
                 {
                     cout << "\rToo many failed attempts. Try again in "
                          << i << " seconds..." << flush;
-                    Sleep(1000);
+                    std::this_thread::sleep_for(std::chrono::seconds(1));
                 }
                 cout << "\n";
                 attempts = 3;

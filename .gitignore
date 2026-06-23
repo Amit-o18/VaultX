@@ -1,3 +1,4 @@
-data/master.hash
 *.exe
 build/
+data/*
+!data/.gitkeep
