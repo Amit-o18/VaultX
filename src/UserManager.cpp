@@ -4,7 +4,7 @@
 #include <string>
 
 using namespace std;
-
+#include"../include/Vault.h"
 #include "../include/UserManager.h"
 #include "../include/AuthManager.h"
 
@@ -39,6 +39,8 @@ void UserManager::loginUser(){
         cout<<"User Found.."<<endl;
         if(A.verifyPass(username)){
             cout<<"Login Successful!\n";
+            VaultMenu V(username);
+            V.showMenu();
         }else{
             cout<<"Login Failed!\n";
         }
