@@ -6,8 +6,8 @@ class VaultMenu{
     public:
         VaultMenu(std::string user);
         void showMenu();      
-        void AddCredential();
-        void ViewCredential();
-        void DeleteCredential();
+        void AddSecret();
+        void ViewSecret();
+        void DeleteSecret();
         void LogOut();
 };

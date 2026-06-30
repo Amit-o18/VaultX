@@ -4,5 +4,5 @@ class AuthManager{
     public:
     bool masterPassExist();
     bool verifyPass(string username);
-    void createMasterPass();
+    void createMasterPass(string username);
 };

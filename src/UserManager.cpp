@@ -14,20 +14,23 @@ bool UserManager::userExists(const string& username){
 }
 
 void UserManager::createUser(){
+    cin.ignore();
     string username;
     cout<<"Enter UserName: ";
-    cin>>username;
+    getline(cin,username);
     if(userExists(username)){
          cout << "User already exists!\n";
     }else{
         fs::create_directories("data/"+username);
-        ofstream masterFile("data/"+username+"/master.hash");
+        // ofstream masterFile("data/"+username+"/master.hash");
         ofstream vaultFile("data/"+username+"/vault.dat");
-        masterFile.close();
+        
+        AuthManager A;
+        A.createMasterPass(username);
+        // masterFile.close();
         vaultFile.close();
         cout << "User created successfully!\n";
     }
-
 }
 
 void UserManager::loginUser(){

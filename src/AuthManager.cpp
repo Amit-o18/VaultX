@@ -10,7 +10,7 @@ bool AuthManager::masterPassExist()
     return filesystem::exists("data/master.hash");
 }
 
-void AuthManager::createMasterPass()
+void AuthManager::createMasterPass(string username)
 {
     string masterPass;
     string confirmPass;
@@ -38,7 +38,7 @@ void AuthManager::createMasterPass()
             if (masterPass == confirmPass)
             {
                 confirm = true;
-                ofstream file("data/master.hash");
+                ofstream file("data/"+username+"/master.hash");
                 if (file.is_open())
                 {
                     file << masterPass;
@@ -58,13 +58,14 @@ void AuthManager::createMasterPass()
             }
         }
     }
+    return;
 }
 
 bool AuthManager::verifyPass(string username)
 {
     string masterPath="data/"+username+"/master.hash";
-    string vaultPath="data/"+username+"/vault.dat+";
-    ifstream file("masterPath");    
+    string vaultPath="data/"+username+"/vault.dat";
+    ifstream file(masterPath);    
     string existPass = "";
     if (file.is_open())
     {
@@ -77,7 +78,7 @@ bool AuthManager::verifyPass(string username)
     }
     int attempts = 3;
     string masterPass = "";
-
+    cin.ignore();
     while (attempts > 0)
     {
 
