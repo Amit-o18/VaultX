@@ -58,7 +58,21 @@ void VaultMenu::AddSecret(){
 }
 
 void VaultMenu::ViewSecret(){
-    cout << "View Credential\n";
+    string line;
+    ifstream file("data/"+username+"/vault.dat");
+    if(!file.is_open()){
+        cout<<"Error: Unable to open vault file.";
+        return;
+    }else if(!getline(file,line)){
+        cout << "Vault is empty.\n";
+        return;
+    }else{
+        cout<<line<<"\n";
+        while(getline(file,line)){
+            cout<<line<<"\n";
+        }
+    }    
+    file.close();
 }
 
 void VaultMenu::DeleteSecret(){
